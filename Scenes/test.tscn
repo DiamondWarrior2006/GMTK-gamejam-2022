@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float columns = 64.0;
+uniform float rows = 36.0;
+uniform float border_width = 0.05;
+uniform vec4 border_color : hint_color;
+
+
+void fragment() {
+    vec2 grid = fract(vec2(UV.x * columns, UV.y * rows));
+	vec2 bottom_left = step(vec2(border_width), grid);
+	vec2 top_right = step(vec2(border_width), 1.0 - grid);
+	COLOR = border_color - (bottom_left.x * bottom_left.y * top_right.x * top_right.y);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/columns = 16.0
+shader_param/rows = 9.0
+shader_param/border_width = 0.026
+shader_param/border_color = null
+
+[node name="test" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 64, 67 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 2 )
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true
+}
