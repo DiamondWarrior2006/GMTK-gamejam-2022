@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/test.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -22,13 +25,17 @@ void fragment() {
 shader = SubResource( 1 )
 shader_param/columns = 16.0
 shader_param/rows = 9.0
-shader_param/border_width = 0.026
+shader_param/border_width = 0.016
 shader_param/border_color = null
 
 [node name="test" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="enemy" parent="." instance=ExtResource( 2 )]
+position = Vector2( 486, 285 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 64, 67 )
+position = Vector2( 338, 287 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
@@ -39,3 +46,9 @@ mouse_filter = 2
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource( 4 )]
+
+[connection signal="rolled" from="CanvasLayer/UI" to="." method="_on_UI_rolled"]
