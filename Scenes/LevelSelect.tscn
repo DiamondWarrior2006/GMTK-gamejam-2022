@@ -1,0 +1,124 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Tileset/TitleScreen.tres" type="TileSet" id=1]
+[ext_resource path="res://Fonts/yoster.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 22
+extra_spacing_top = 3
+font_data = ExtResource( 2 )
+
+[node name="LevelSelect" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PoolIntArray( 0, 1, 0, 1, 0, 0, 2, 1, 0, 3, 2, 0, 4, 1, 0, 5, 0, 0, 6, 1, 0, 65536, 2, 0, 65537, 1, 0, 65538, 2, 0, 65539, 1, 0, 65540, 0, 0, 65541, 1, 0, 65542, 0, 0, 131072, 1, 0, 131073, 0, 0, 131074, 1, 0, 131075, 0, 0, 131076, 1, 0, 131077, 0, 0, 131078, 1, 0, 196608, 0, 0, 196609, 1, 0, 196610, 2, 0, 196611, 1, 0, 196612, 0, 0, 196613, 1, 0, 196614, 2, 0, 262144, 1, 0, 262145, 0, 0, 262146, 1, 0, 262147, 0, 0, 262148, 1, 0, 262149, 0, 0, 262150, 1, 0, 327680, 2, 0, 327681, 1, 0, 327682, 0, 0, 327683, 1, 0, 327684, 2, 0, 327685, 1, 0, 327686, 0, 0, 393216, 1, 0, 393217, 2, 0, 393218, 1, 0, 393219, 0, 0, 393220, 1, 0, 393221, 0, 0, 393222, 1, 0 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 31.0
+margin_top = 34.0
+margin_right = 193.0
+margin_bottom = 64.0
+custom_colors/default_color = Color( 1, 0.666667, 0.431373, 1 )
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[color=#ffaa6e][wave amp=30 freq=5]Level Select"
+text = "Level Select"
+fit_content_height = true
+
+[node name="GridContainer" type="GridContainer" parent="."]
+margin_left = 63.0
+margin_top = 93.0
+margin_right = 174.0
+margin_bottom = 201.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+columns = 3
+
+[node name="Button" type="Button" parent="GridContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "1"
+flat = true
+
+[node name="Button2" type="Button" parent="GridContainer"]
+margin_left = 38.0
+margin_right = 58.0
+margin_bottom = 20.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "2"
+flat = true
+
+[node name="Button3" type="Button" parent="GridContainer"]
+margin_left = 76.0
+margin_right = 96.0
+margin_bottom = 20.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "3"
+flat = true
+
+[node name="Button4" type="Button" parent="GridContainer"]
+margin_top = 37.0
+margin_right = 20.0
+margin_bottom = 57.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "4"
+flat = true
+
+[node name="Button5" type="Button" parent="GridContainer"]
+margin_left = 38.0
+margin_top = 37.0
+margin_right = 58.0
+margin_bottom = 57.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "5"
+flat = true
+
+[node name="Button6" type="Button" parent="GridContainer"]
+margin_left = 76.0
+margin_top = 37.0
+margin_right = 96.0
+margin_bottom = 57.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "6"
+flat = true
+
+[node name="Button7" type="Button" parent="GridContainer"]
+margin_top = 74.0
+margin_right = 20.0
+margin_bottom = 94.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "7"
+flat = true
+
+[node name="Button8" type="Button" parent="GridContainer"]
+margin_left = 38.0
+margin_top = 74.0
+margin_right = 58.0
+margin_bottom = 94.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "8"
+flat = true
+
+[node name="Button9" type="Button" parent="GridContainer"]
+margin_left = 76.0
+margin_top = 74.0
+margin_right = 96.0
+margin_bottom = 94.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+text = "9"
+flat = true
