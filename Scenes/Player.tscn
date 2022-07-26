@@ -1,13 +1,143 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=23 format=2]
 
-[ext_resource path="res://Sprites/idk.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Player-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11, 12 )
 
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "down"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "left"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
 [sub_resource type="Animation" id=2]
-resource_name = "idle"
+resource_name = "right"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "up"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "down"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "left"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "right"
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "up"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+
+[sub_resource type="AnimationNodeStateMachine" id=12]
+states/down/node = SubResource( 17 )
+states/down/position = Vector2( 355, 73 )
+states/left/node = SubResource( 25 )
+states/left/position = Vector2( 355, 185 )
+states/right/node = SubResource( 18 )
+states/right/position = Vector2( 141, 73 )
+states/up/node = SubResource( 8 )
+states/up/position = Vector2( 141, 185 )
+transitions = [ "right", "up", SubResource( 19 ), "up", "right", SubResource( 20 ), "down", "right", SubResource( 23 ), "right", "down", SubResource( 24 ), "up", "left", SubResource( 26 ), "left", "up", SubResource( 27 ), "left", "down", SubResource( 28 ), "down", "left", SubResource( 29 ) ]
+start_node = "right"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 
 [node name="Player" type="Area2D"]
 script = ExtResource( 2 )
@@ -17,18 +147,30 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
-hframes = 2
+hframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 4 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 2 )
+anims/RESET = SubResource( 3 )
+anims/down = SubResource( 16 )
+anims/left = SubResource( 4 )
+anims/right = SubResource( 2 )
+anims/up = SubResource( 5 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 12 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 13 )
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 enabled = true
+cast_to = Vector2( 0, 34.688 )
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 0, 16.016 )
